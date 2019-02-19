@@ -1,0 +1,440 @@
+/*
+  VJS Custom Theme
+  based on version 4.12.0 with http://designer.videojs.com
+  */
+/* SKIN
+  ================================================================================
+  The main class name for all skin-specific styles. To make your own skin,
+  replace all occurrences of 'vjs-custom-skin' with a new name. Then add your new
+  skin name to your video tag instead of the default skin.
+  e.g. <video class="video-js my-skin-name">
+  */
+.vjs-custom-skin {
+  color: #cccccc;
+}
+/* Custom Icon Font
+  --------------------------------------------------------------------------------
+  The control icons are from a custom font. Each icon corresponds to a character
+  (e.g. "\e001"). Font icons allow for easy scaling and coloring of icons.
+  */
+@font-face {
+  font-family: 'VideoJS';
+  src: url('https://vjs.zencdn.net/f/3/vjs.eot');
+  src: url('https://vjs.zencdn.net/f/3/vjs.eot?#iefix') format('embedded-opentype'), url('https://vjs.zencdn.net/f/3/vjs.woff') format('woff'), url('https://vjs.zencdn.net/f/3/vjs.ttf') format('truetype'), url('https://vjs.zencdn.net/f/3/vjs.svg#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Base UI Component Classes
+  --------------------------------------------------------------------------------
+  */
+/* Control Bar
+  --------------------------------------------------------------------------------
+  The default control bar that is a container for most of the controls.
+  */
+.vjs-custom-skin .vjs-control-bar {
+  /* Start hidden */
+  display: none;
+  position: absolute;
+  /* Place control bar at the bottom of the player box/video.
+       If you want more margin below the control bar, add more height. */
+  bottom: 0;
+  /* Use left/right to stretch to 100% width of player div */
+  left: 0;
+  right: 0;
+  /* Height includes any margin you want above or below control items */
+  height: 3.0em;
+  background-color: transparent;
+}
+/* Show the control bar only once the video has started playing */
+.vjs-custom-skin.vjs-has-started .vjs-control-bar {
+  display: block;
+  /* Visibility needed to make sure things hide in older browsers too. */
+
+  visibility: visible;
+  opacity: 1;
+  /* transition */
+  -webkit-transition: visibility 0.1s, opacity 0.1s;
+  -moz-transition: visibility 0.1s, opacity 0.1s;
+  -o-transition: visibility 0.1s, opacity 0.1s;
+  transition: visibility 0.1s, opacity 0.1s;
+}
+/* Hide the control bar when the video is playing and the user is inactive  */
+.vjs-custom-skin.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar {
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  /* transition */
+  -webkit-transition: visibility 1s, opacity 1s;
+  -moz-transition: visibility 1s, opacity 1s;
+  -o-transition: visibility 1s, opacity 1s;
+  transition: visibility 1s, opacity 1s;
+}
+.vjs-custom-skin.vjs-controls-disabled .vjs-control-bar {
+  display: none;
+}
+.vjs-custom-skin.vjs-using-native-controls .vjs-control-bar {
+  display: none;
+}
+/* The control bar shouldn't show after an error */
+.vjs-custom-skin.vjs-error .vjs-control-bar {
+  display: none;
+}
+/* Don't hide the control bar if it's audio */
+.vjs-audio.vjs-custom-skin.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar {
+  opacity: 1;
+  visibility: visible;
+}
+/* IE8 is flakey with fonts, and you have to change the actual content to force
+  fonts to show/hide properly.
+    - "\9" IE8 hack didn't work for this
+    - Found in XP IE8 from http://modern.ie. Does not show up in "IE8 mode" in IE9
+  */
+@media \0screen {
+  .vjs-custom-skin.vjs-user-inactive.vjs-playing .vjs-control-bar :before {
+    content: "";
+  }
+}
+/* General styles for individual controls. */
+.vjs-custom-skin .vjs-control {
+  outline: none;
+  position: relative;
+  float: left;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  height: 3.0em;
+  width: 3em;
+}
+/* Font button icons */
+.vjs-custom-skin .vjs-control:before {
+  font-family: VideoJS;
+  font-size: 1.5em;
+  line-height: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+/* Replacement for focus outline */
+.vjs-custom-skin .vjs-control:focus:before,
+.vjs-custom-skin .vjs-control:hover:before {
+  text-shadow: 0em 0em 1em #ffffff;
+}
+.vjs-custom-skin .vjs-control:focus {
+  /*  outline: 0; */
+  /* keyboard-only users cannot see the focus on several of the UI elements when
+    this is set to 0 */
+
+}
+/* Hide control text visually, but have it available for screenreaders */
+.vjs-custom-skin .vjs-control-text {
+  /* hide-visually */
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+/* Play/Pause
+  --------------------------------------------------------------------------------
+  */
+.vjs-custom-skin .vjs-play-control {
+  width: 3em;
+  cursor: pointer;
+}
+.vjs-custom-skin .vjs-play-control:before {
+  content: "\e001";
+}
+.vjs-custom-skin.vjs-playing .vjs-play-control:before {
+  content: "\e002";
+}
+/* Volume/Mute
+  -------------------------------------------------------------------------------- */
+.vjs-custom-skin .vjs-mute-control {
+  cursor: pointer;
+  float: left;
+}
+.vjs-custom-skin .vjs-mute-control:before {
+  content: "\e006";
+}
+.vjs-custom-skin .vjs-mute-control.vjs-vol-0:before {
+  content: "\e003";
+}
+.vjs-custom-skin .vjs-mute-control.vjs-vol-1:before {
+  content: "\e004";
+}
+.vjs-custom-skin .vjs-mute-control.vjs-vol-2:before {
+  content: "\e005";
+}
+/* Error Display
+  --------------------------------------------------------------------------------
+  */
+.vjs-error-display {
+  display: none;
+}
+.vjs-error .vjs-error-display {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.vjs-error .vjs-error-display:before {
+  content: 'X';
+  font-family: Arial;
+  font-size: 4em;
+  color: #666666;
+  /* In order to center the play icon vertically we need to set the line height
+       to the same as the button height */
+
+  line-height: 1;
+  text-shadow: 0.05em 0.05em 0.1em #000;
+  text-align: center /* Needed for IE8 */;
+  vertical-align: middle;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -0.5em;
+  width: 100%;
+}
+.vjs-error-display div {
+  position: absolute;
+  bottom: 1em;
+  right: 0;
+  left: 0;
+  font-size: 1.4em;
+  text-align: center;
+  padding: 3px;
+  background: #000000;
+  background: rgba(0, 0, 0, 0.5);
+}
+.vjs-error-display a,
+.vjs-error-display a:visited {
+  color: #F4A460;
+}
+/* Loading Spinner
+  --------------------------------------------------------------------------------
+  */
+.vjs-loading-spinner {
+  /* Should be hidden by default */
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 4em;
+  line-height: 1;
+  width: 1em;
+  height: 1em;
+  margin-left: -0.5em;
+  margin-top: -0.5em;
+  opacity: 0.75;
+}
+/* Show the spinner when waiting for data and seeking to a new time */
+.vjs-waiting .vjs-loading-spinner,
+.vjs-seeking .vjs-loading-spinner {
+  display: block;
+  /* only animate when showing because it can be processor heavy */
+  /* animation */
+  -webkit-animation: spin 1.5s infinite linear;
+  -moz-animation: spin 1.5s infinite linear;
+  -o-animation: spin 1.5s infinite linear;
+  animation: spin 1.5s infinite linear;
+}
+/* Errors are unrecoverable without user interaction so hide the spinner */
+.vjs-error .vjs-loading-spinner {
+  display: none;
+  /* ensure animation doesn't continue while hidden */
+  /* animation */
+  -webkit-animation: none;
+  -moz-animation: none;
+  -o-animation: none;
+  animation: none;
+}
+.vjs-custom-skin .vjs-loading-spinner:before {
+  content: "\e01e";
+  font-family: VideoJS;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1em;
+  height: 1em;
+  text-align: center;
+  text-shadow: 0em 0em 0.1em #000;
+}
+@-moz-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(359deg);
+  }
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+  }
+}
+@-o-keyframes spin {
+  0% {
+    -o-transform: rotate(0deg);
+  }
+  100% {
+    -o-transform: rotate(359deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+/* Replacement for focus outline */
+.vjs-custom-skin .vjs-captions-button:focus .vjs-control-content:before,
+.vjs-custom-skin .vjs-captions-button:hover .vjs-control-content:before {
+  /* box-shadow */
+  -webkit-box-shadow: 0 0 1em #ffffff;
+  -moz-box-shadow: 0 0 1em #ffffff;
+  box-shadow: 0 0 1em #ffffff;
+}
+/*
+  REQUIRED STYLES (be careful overriding)
+  ================================================================================
+  When loading the player, the video tag is replaced with a DIV,
+  that will hold the video tag or object tag for other playback methods.
+  The div contains the video playback element (Flash or HTML5) and controls,
+  and sets the width and height of the video.
+
+  ** If you want to add some kind of border/padding (e.g. a frame), or special
+  positioning, use another containing element. Otherwise you risk messing up
+  control positioning and full window mode. **
+  */
+.video-js {
+  background-color: #000;
+  position: relative;
+  padding: 0;
+  /* Start with 10px for base font size so other dimensions can be em based and
+       easily calculable. */
+
+  font-size: 10px;
+  /* Allow poster to be vertically aligned. */
+
+  vertical-align: middle;
+  /*  display: table-cell; */
+  /*This works in Safari but not Firefox.*/
+
+  /* Provide some basic defaults for fonts */
+
+  font-weight: normal;
+  font-style: normal;
+  /* Avoiding helvetica: issue #376 */
+
+  font-family: Arial, sans-serif;
+  /* Turn off user selection (text highlighting) by default.
+       The majority of player components will not be text blocks.
+       Text areas will need to turn user selection back on. */
+
+  /* user-select */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* Playback technology elements expand to the width/height of the containing div
+      <video> or <object> */
+.video-js .vjs-tech {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+/* Poster Styles */
+.vjs-poster {
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: contain;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.vjs-poster img {
+  display: block;
+  margin: 0 auto;
+  max-height: 100%;
+  padding: 0;
+  width: 100%;
+}
+/* Hide the poster after the video has started playing */
+.video-js.vjs-has-started .vjs-poster {
+  display: none;
+}
+/* Don't hide the poster if we're playing audio */
+.video-js.vjs-audio.vjs-has-started .vjs-poster {
+  display: block;
+}
+/* Hide the poster when controls are disabled because it's clickable
+      and the native poster can take over */
+.video-js.vjs-controls-disabled .vjs-poster {
+  display: none;
+}
+/* Hide the poster when native controls are used otherwise it covers them */
+.video-js.vjs-using-native-controls .vjs-poster {
+  display: none;
+}
+/* Hide disabled or unsupported controls */
+.vjs-hidden {
+  display: none !important;
+}
+.vjs-lock-showing {
+  display: block !important;
+  opacity: 1;
+  visibility: visible;
+}
+/*  In IE8 w/ no JavaScript (no HTML5 shim), the video tag doesn't register.
+      The .video-js classname on the video tag also isn't considered.
+      This optional paragraph inside the video tag can provide a message to users
+      about what's required to play video. */
+.vjs-no-js {
+  padding: 2em;
+  color: #ccc;
+  background-color: #333;
+  font-size: 1.8em;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  width: 30em;
+  height: 15em;
+  margin: 0 auto;
+}
+.vjs-no-js a,
+.vjs-no-js a:visited {
+  color: #F4A460;
+}
+/* -----------------------------------------------------------------------------
+  The original source of this file lives at
+  https://github.com/videojs/video.js/blob/master/src/css/video-js.less */
+.vjs-time-controls,
+.vjs-live-controls,
+.vjs-progress-control,
+.vjs-fullscreen-control,
+.vjs-volume-control,
+.vjs-time-divider,
+.vjs-custom-skin .vjs-big-play-button {
+  display: none;
+}

@@ -1,0 +1,133 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+.hidden {
+    display: none !important;
+}
+
+<% if(isResponsive) { %>
+body {
+    bottom: 0;
+    height: 100vh;
+    left: 0;
+    margin: auto;
+    margin-left: 0;
+    max-height: 200vw;
+    max-width: 100vw;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 50vh;
+}
+
+#content {
+    background-color: #757575;
+    cursor: pointer;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+<% } else { %>
+#content {
+    background-color: #757575;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    height: <%= height %>px;
+    width: <%= width %>px;
+}
+<% } %>
+<% if(isClosable) { %>
+$closeWidth: 5%;
+$closeColor: #000;
+
+.close {
+    color: $closeColor;
+    cursor: pointer;
+    display: none;
+    font-size: 0;
+    left: 0;
+    margin: 2.5%;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    vertical-align: middle;
+    width: $closeWidth;
+    padding-top: $closeWidth;
+    z-index: 9999;
+
+    > svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+
+    .is-closable & {
+        display: block;
+    }
+}
+<% } %>
+<% if(hasVideo) { %>
+#video-wrapper {
+    position: relative;
+    height: auto;
+    width: 100%;
+
+    &::after {
+        content: '';
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    .video-js {
+        min-height: 100%;
+        min-width: 100%;
+        max-height: 100%;
+        max-width: 100%;
+    }
+
+    .vjs-control-bar {
+        z-index: 100;
+    }
+}
+
+.embed-responsive {
+    position: relative;
+    display: block;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    .embed-responsive-item,
+    iframe,
+    embed,
+    object,
+    video {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+}
+.embed-responsive-16by9 {
+    padding-bottom: 56.25%;
+}
+.embed-responsive-4by3 {
+    padding-bottom: 75%;
+}
+.embed-responsive-1by2 {
+    padding-bottom: 200%;
+}
+<% } %>

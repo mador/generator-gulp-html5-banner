@@ -1,0 +1,12 @@
+# yeoman webapp
+node_modules
+dist
+.tmp
+bower_components
+npm-debug.log
+*.zip
+
+# ignore optimized base images
+*.orig.svg
+*.orig.png
+*.orig.jpg

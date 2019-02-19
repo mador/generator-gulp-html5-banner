@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="ad.size" content="width=<%= width %>,height=<%= height %>">
+
+        <!-- build:css({.,.tmp}) styles/main.css -->
+        <link rel="stylesheet" href="styles/normalize.css">
+        <% if(hasVideo) { %><link rel="stylesheet" href="styles/vjs.css"><% } %>
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+
+        <% if(isResponsive) { %><!--[if lte IE 9]><style>body {display: block;height: 600px;margin: 0 auto;width: 300px;}</style><![endif]--><% } %>
+
+        <script type="text/javascript">
+            var clickTag = "";
+        </script>
+    </head>
+    <body class="<% if(close) { %>is-closable<% } %>">
+
+        <div id="content">
+            <% if(close) { %>
+            <div class="close">
+                <svg xmlns="http://www.w3.org/2000/svg" color-interpolation="auto" viewBox="13.5 193.5 192.4 192.4" preserveAspectRatio="xMidYMid meet"><path fill="currentColor" d="M190.4 386l-80.7-80.7L29 386l-15.5-15.7 80.7-80.6L13.5 209 29 193.6l80.7 80.6 80.7-80.5L206 209l-80.7 80.7 80.6 80.6-15.6 15.6z"/></svg>
+            </div>
+            <% } %>
+            <!-- Your ad here -->
+            <% if(hasVideo) { %>
+            <div id="video-wrapper">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <video id="video" class="embed-responsive-item video-js vjs-dmb-skin" controls muted playsinline preload="auto" width="450" height="253" poster="http://video-js.zencoder.com/oceans-clip.jpg">
+                        <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+                        <source src="http://vjs.zencdn.net/v/oceans.webm" type="video/webm" />
+                    </video>
+                </div>
+            </div>
+            <% } %>
+        </div>
+
+        <!--[if lt IE 9]><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script><![endif]-->
+        <!--[if gte IE 9]><!--><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script><!--<![endif]-->
+        <% if(useTA) { %><script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script><% } %>
+        <% if(hasVideo) { %><script src="https://vjs.zencdn.net/4.12/video.js"></script><% } %>
+
+        <!-- build:js({.,app}) scripts/vendor.js -->
+        <% if(useTA) { %><script src="scripts/timedani.js"></script><% } %>
+        <!-- endbuild -->
+        <!-- build:js({app,.tmp}) scripts/main.js -->
+        <script src="scripts/core.js"></script>
+        <script src="scripts/main.js"></script>
+        <!-- endbuild -->
+    </body>
+</html>
