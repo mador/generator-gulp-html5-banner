@@ -140,7 +140,6 @@ module.exports = class extends Generator {
         this._writingPackageJSON();
         this._writingBabel();
         this._writingGit();
-        this._writingBower();
         this._writingEditorConfig();
         this._writingPrettier();
         this._writingStyles();
@@ -192,16 +191,6 @@ module.exports = class extends Generator {
         this.fs.copy(
             this.templatePath('gitignore'),
             this.destinationPath('.gitignore')
-        );
-    }
-
-    _writingBower() {
-        this.fs.copyTpl(
-            this.templatePath('_bower.json'),
-            this.destinationPath('bower.json'),
-            {
-                name: this.bannerName
-            }
         );
     }
 
@@ -323,6 +312,10 @@ module.exports = class extends Generator {
 
     end() {
         this.log('All done!');
+    }
+
+    install() {
+        this.npmInstall();
     }
 
     _convertDoubleToSingleQuotes(s) {

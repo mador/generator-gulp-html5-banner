@@ -34,7 +34,6 @@
         "gulp-util": "^3.0.8",
         "jsonfile": "^3.0.0",
         "lazypipe": "^1.0.1",
-        "main-bower-files": "^2.5.0",
         "wiredep": "^4.0.0",
         "git-repo-info": "^1.4.1"
     },
