@@ -18,3 +18,26 @@ Finally, initiate the generator:
 ```bash
 yo gulp-html5-banner
 ```
+
+## Gulp Tasks
+Serve the banner
+```bash
+gulp serve
+```
+
+Build IAB-Standard
+```bash
+gulp build
+```
+Build AdForm
+```bash
+gulp build:adform
+```
+Build DCM
+```bash
+gulp build:dcm
+```
+Zip the package
+```bash
+gulp zip
+```
