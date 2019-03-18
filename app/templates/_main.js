@@ -51,7 +51,7 @@
         .on('mouseleave', function() {
             player.muted(true);
         })<% if(close) { %>
-        .on('dmb:close', function() {
+        .on('html5Banner:close', function() {
             player.pause();
             player.muted(true);
             <% if(useTA) { %>tl1.pause();<% } %>
@@ -99,7 +99,7 @@
      * Don't forget e.stopPropagation(); inside each clickhandler.
      */<% if(useTA) { %><% if(close) { %>
     $content
-        .on('dmb:close', function() {
+        .on('html5Banner:close', function() {
             tl1.pause();
         });
     <% } %>

@@ -1,6 +1,6 @@
 {
     "name": "generator-gulp-html5-banner",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Yeoman gulp generator for HTML5 ads",
     "license": "MIT",
     "main": "app/index.js",

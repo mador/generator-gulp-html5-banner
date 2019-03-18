@@ -20,7 +20,7 @@
             e.stopPropagation();
 
             // Trigger an event to notify subscribers that the ad was closed
-            $content.addClass('hidden').trigger('dmb:close');
+            $content.addClass('hidden').trigger('html5Banner:close');
         })<% } %>
         .on('click', '#content', _clickHandler)
     ;
