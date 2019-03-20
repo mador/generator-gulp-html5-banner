@@ -41,10 +41,10 @@
 
         <!--[if lt IE 9]><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script><![endif]-->
         <!--[if gte IE 9]><!--><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script><!--<![endif]-->
-        <% if(useTA) { %><script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script><% } %>
         <% if(hasVideo) { %><script src="https://vjs.zencdn.net/4.12/video.js"></script><% } %>
 
         <!-- build:js({.,app}) scripts/vendor.js -->
+        <% if(useTA) { %><script src="scripts/velocity.min.js"></script><% } %>
         <% if(useTA) { %><script src="scripts/timedani.js"></script><% } %>
         <!-- endbuild -->
         <!-- build:js({app,.tmp}) scripts/main.js -->

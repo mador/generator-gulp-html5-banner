@@ -273,6 +273,10 @@ module.exports = class extends Generator {
                 this.templatePath('_timedani.js'),
                 this.destinationPath('app/scripts/timedani.js')
             );
+            this.fs.copy(
+                this.templatePath('_velocity.min.js'),
+                this.destinationPath('app/scripts/velocity.min.js')
+            );
         }
     }
 

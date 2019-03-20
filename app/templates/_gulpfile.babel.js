@@ -38,7 +38,7 @@ gulp.task('styles', () => {<% if (includeSass) { %>
 <% if (includeBabel) {
     -%>
         gulp.task('scripts', () => {
-            return gulp.src(['app/scripts/**/*.js', '!app/scripts/timedani.js'])
+            return gulp.src(['app/scripts/**/*.js', '!app/scripts/timedani.js', '!app/scripts/velocity.js'])
                 .pipe($.plumber())
                 .pipe($.sourcemaps.init())
                 .pipe($.babel())
