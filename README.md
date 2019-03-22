@@ -43,3 +43,8 @@ gulp zip
 ```
 
 Use zip:adform and zip:dcm to add "adform"/"dcm" to folder name.
+
+
+## Contributors
+[@mador](https://github.com/mador)<br>
+[@iantsch](https://twitter.com/iantsch) - [web developer](https://mbt.wien) behind this and other projects.<br>
