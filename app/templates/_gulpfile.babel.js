@@ -277,7 +277,7 @@ function makeZip(type) {
     name += type;
 
     if (repo.branch !== 'master') {
-        name += '-' + repo.branch;
+        name += '-' + repo.branch.replace('/', '-');
     }
     name += '-' + repo.sha.substring(0, 7);
 
