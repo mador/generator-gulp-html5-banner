@@ -41,3 +41,5 @@ Zip the package
 ```bash
 gulp zip
 ```
+
+Use zip:adform and zip:dcm to add "adform"/"dcm" to folder name.
