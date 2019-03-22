@@ -267,11 +267,14 @@ gulp.task('check:dist', () => {
     }
 });
 
-gulp.task('zip', ['check:dist'], () => {
+
+function makeZip(type) {
     let repoInfo = require('git-repo-info'),
         repo = repoInfo(),
         packageName = JSON.parse(fs.readFileSync('package.json')).name.replace(/\s/g, '').toLowerCase(), // extract the current name from package.json
         name = packageName;
+
+    name += type;
 
     if (repo.branch !== 'master') {
         name += '-' + repo.branch;
@@ -297,4 +300,14 @@ gulp.task('zip', ['check:dist'], () => {
             });
         });
     });
+}
+
+gulp.task('zip', ['check:dist'], () => {
+    makeZip('-iab');
+});
+gulp.task('zip:dcm', ['check:dist'], () => {
+    makeZip('-dcm');
+});
+gulp.task('zip:adform', ['check:dist'], () => {
+    makeZip('-adform');
 });
