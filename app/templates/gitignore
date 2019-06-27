@@ -9,3 +9,6 @@ npm-debug.log
 *.orig.svg
 *.orig.png
 *.orig.jpg
+
+.DS_Store
+.idea/
